@@ -1,0 +1,55 @@
+PODS:
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - shared_preferences (0.0.1):
+    - Flutter
+  - Socket.IO-Client-Swift (13.4.0):
+    - Starscream (~> 3.0.2)
+  - Starscream (3.0.6)
+  - Toast (4.0.0)
+  - VWO (2.7.1):
+    - VWO/All (= 2.7.1)
+  - VWO/All (2.7.1):
+    - Socket.IO-Client-Swift (~> 13.1)
+  - vwo_flutter (0.0.1):
+    - Flutter
+    - VWO (~> 2.7.1)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - vwo_flutter (from `.symlinks/plugins/vwo_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Socket.IO-Client-Swift
+    - Starscream
+    - Toast
+    - VWO
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+  vwo_flutter:
+    :path: ".symlinks/plugins/vwo_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  Socket.IO-Client-Swift: 2b2720f14c92ff1237ced09bc2f2da2022624fee
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  VWO: f7cfcc0df231c378eed8d8088d30babf456ccc9c
+  vwo_flutter: 052adfb4ab2a77be441c7ed310e76781d575643e
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
