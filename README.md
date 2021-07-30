@@ -1,5 +1,4 @@
 # VWO Flutter SDK
-======================================
 
 This open source library allows you to A/B Test your Flutter app.
 
