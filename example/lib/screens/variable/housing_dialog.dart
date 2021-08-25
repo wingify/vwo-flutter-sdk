@@ -24,7 +24,8 @@ import 'package:vwo_flutter_example/utils/string_constant.dart';
 class HousingDialog extends StatelessWidget {
   String heading;
   String content;
-  HousingDialog({this.heading, this.content});
+  HousingDialog({required this.heading, required this.content});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HousingProvider>(
