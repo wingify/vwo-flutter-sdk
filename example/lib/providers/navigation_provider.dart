@@ -32,19 +32,20 @@ class NavigationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void launchVWO(String apiKey) async {
+  Future<String?> launchVWO(String apiKey) async {
     VWO.setLogLevel(VWOLog.ALL);
     VWOConfig vwoConfig = VWOConfig();
-    String response = '';
+    String? response = '';
     if (Platform.isIOS) {
-      response = await VWO.launch("20d11bb3c68db966715757f8cbeaf8b5-469557", vwoConfig: vwoConfig);
+      response = await VWO.launch(apiKey, vwoConfig: vwoConfig);
     } else {
-      response = await VWO.launch("653a9dcd6c43ce70ec730c9af3c30594-469557", vwoConfig: vwoConfig);
+      response = await VWO.launch(apiKey, vwoConfig: vwoConfig);
     }
     if (response == 'success') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString(Constants.API_KEY, apiKey);
     }
     print('response of vwo launch is $response');
+    return response;
   }
 }

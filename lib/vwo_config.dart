@@ -14,12 +14,12 @@
 /// limitations under the License.
 
 class VWOConfig {
-  bool optOut;
-  Map<String, dynamic> customVariables;
-  String customDimensionKey;
-  String customDimensionValue;
-  String userId;
-  bool disablePreview;
+  bool? optOut;
+  Map<String, dynamic>? customVariables;
+  String? customDimensionKey;
+  String? customDimensionValue;
+  String? userId;
+  bool? disablePreview;
 
   VWOConfig(
       {this.optOut,

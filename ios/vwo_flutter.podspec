@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'vwo_flutter'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'VWO SDK for A/B Testing Flutter apps.'
   s.description      = <<-DESC
  VWO Flutter plugin allows you to A/B Test your Mobile Applications.

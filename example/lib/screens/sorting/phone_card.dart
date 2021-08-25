@@ -22,7 +22,7 @@ import 'package:vwo_flutter_example/utils/color_constant.dart';
 class PhoneCard extends StatelessWidget {
   final int index;
 
-  PhoneCard({this.index});
+  PhoneCard({required this.index});
 
   @override
   Widget build(BuildContext context) {

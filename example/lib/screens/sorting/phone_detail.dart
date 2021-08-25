@@ -13,10 +13,9 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:vwo_flutter_example/providers/sorting_provider.dart';
 import 'package:vwo_flutter_example/utils/color_constant.dart';
 import 'package:vwo_flutter_example/utils/string_constant.dart';
@@ -76,16 +75,21 @@ class PhoneDetail extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                SmoothStarRating(
-                    allowHalfRating: false,
-                    starCount: 5,
-                    rating: sortingProvider
-                        .mobileList[sortingProvider.selectedPhone].rating,
-                    size: 40.0,
-                    isReadOnly: true,
+                RatingBar.builder(
+                  ignoreGestures: true,
+                  allowHalfRating: false,
+                  itemCount: 5,
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
                     color: ColorConstant.STAR_RATING_COLOR,
-                    borderColor: Colors.grey,
-                    spacing: 0.0),
+                  ),
+                  onRatingUpdate: (rating) {
+                    print(rating);
+                  },
+                  initialRating: sortingProvider
+                      .mobileList[sortingProvider.selectedPhone].rating,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                ),
                 Divider(
                   thickness: 2,
                   color: Colors.black26,
@@ -112,11 +116,13 @@ class PhoneDetail extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                _actionButton(StringConstant.BUY_NOW, ColorConstant.BUY_NOW_COLOR),
+                _actionButton(
+                    StringConstant.BUY_NOW, ColorConstant.BUY_NOW_COLOR),
                 SizedBox(
                   height: 10,
                 ),
-                _actionButton(StringConstant.ADD_TO_CART, ColorConstant.ADD_TO_CART_COLOR),
+                _actionButton(StringConstant.ADD_TO_CART,
+                    ColorConstant.ADD_TO_CART_COLOR),
               ],
             ),
           ),

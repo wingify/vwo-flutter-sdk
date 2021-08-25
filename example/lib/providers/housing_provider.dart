@@ -70,16 +70,14 @@ class HousingProvider extends ChangeNotifier {
   }
 
   Future<String> getHeadingText() async {
-    String text =
-        await VWO.getStringForKey(Constants.KEY_DIALOG_HEADING, headingText);
-    headingText = text;
+    String? text =
+        await VWO.getStringForKey(Constants.KEY_DIALOG_HEADING, headingText) ?? 'Use our House Agent!';
     return text;
   }
 
   Future<String> getContentText() async {
     String text =
-        await VWO.getStringForKey(Constants.KEY_DIALOG_CONTENT, contentText);
-    contentText = text;
+        await VWO.getStringForKey(Constants.KEY_DIALOG_CONTENT, contentText) ?? contentText;
     return text;
   }
 }

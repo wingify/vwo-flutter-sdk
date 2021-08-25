@@ -26,7 +26,7 @@ class HousingCard extends StatelessWidget {
   final List<HouseData> houseData;
   final String bhk;
 
-  HousingCard({this.houseData, this.bhk});
+  HousingCard({required this.houseData, required this.bhk});
 
   @override
   Widget build(BuildContext context) {

@@ -129,8 +129,7 @@ class SortingProvider extends ChangeNotifier {
   }
 
   Future<bool> getSortedList() async {
-
-      String variationName =
+    String? variationName =
       await VWO.getVariationNameForTestKey(Constants.TEST_KEY_SORTING);
     if (Constants.CUSTOM_DIMENSION_KEY.isNotEmpty && Constants.CUSTOM_DIMENSION_VALUE.isNotEmpty) {
       VWO.pushCustomDimension(Constants.CUSTOM_DIMENSION_KEY, Constants.CUSTOM_DIMENSION_VALUE);
@@ -172,9 +171,9 @@ class SortingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> isAPIKeyExists() async{
+  Future<String?> isAPIKeyExists() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String apiKey = prefs.getString(Constants.API_KEY);
+    String? apiKey = prefs.getString(Constants.API_KEY);
     if (apiKey != null && apiKey.isNotEmpty) {
       return apiKey;
   }

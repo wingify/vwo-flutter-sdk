@@ -25,9 +25,9 @@ class HouseData {
     int price;
     int bhk;
     String image;
-    Type type = Type.RESIDENTIAL;
-    String description = "Apartment for rent";
-    String units = "\$";
+    Type? type = Type.RESIDENTIAL;
+    String? description = "Apartment for rent";
+    String? units = "\$";
 
     HouseData(this.id, this.name, this.price, this.bhk, this.image, {this.type, this.description, this.units});
 

@@ -21,7 +21,7 @@ enum VWOLog { OFF, SEVERE, WARNING, CONFIG, INFO, ALL }
 
 class VWO {
   static const MethodChannel _channel = const MethodChannel('vwo_flutter_sdk');
-  static String _vwoLog;
+  static String? _vwoLog;
 
   /// Set the log level for the VWO.
   ///
@@ -57,7 +57,7 @@ class VWO {
   /// The [apiKey] is the apiKey for the account. This can be retrieved from the VWO dashboard.
   /// The [vwoConfig] is the different configs which could be set at the time of VWO initialization.
   /// Refer to developer docs for more info on [vwoConfig].
-  static Future<String> launch(String apiKey, {VWOConfig vwoConfig}) async {
+  static Future<String?> launch(String apiKey, {VWOConfig? vwoConfig}) async {
     try {
       if (apiKey.isEmpty) {
         print("apiKey is required to launch VWO.");
@@ -78,50 +78,22 @@ class VWO {
           await _channel.invokeMethod('launch', launchData);
       return vwoLaunch;
     } catch (e) {
+      print(e);
       return null;
     }
   }
 
-  // static Future<String> launchSync(String apiKey, {VWOConfig vwoConfig, int timeout}) async {
-  //   try {
-  //     if (apiKey.isEmpty) {
-  //       print("apiKey is required to launch VWO.");
-  //       return "error";
-  //     }
-  //
-  //     Map<String, dynamic> launchData = {
-  //       "launchSync": true,
-  //       "apiKey": apiKey,
-  //       "launchTimeout": timeout,
-  //       "config": vwoConfig.toMap(),
-  //     };
-  //
-  //     if (_vwoLog != null) {
-  //       launchData['vwoLog'] = _vwoLog;
-  //     }
-  //
-  //     final String vwoLaunch =
-  //         await _channel.invokeMethod('launch', launchData);
-  //     return vwoLaunch;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // }
-
   /// Returns the variation assigned to the user for the [testKey] passed.
-  static Future<String> getVariationNameForTestKey(String testKey) async {
+  static Future<String?> getVariationNameForTestKey(String testKey) async {
     try {
-      if (testKey == null) {
-        print("testKey cannot be null.");
-        return null;
-      }
 
-      final String variationName =
+      final String? variationName =
           await _channel.invokeMethod('variationNameForTestKey', {
         "testKey": testKey,
       });
       return variationName;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -129,18 +101,9 @@ class VWO {
   /// Returns the integer value for the [variableKey].
   ///
   /// [defaultValue] is the the value returned in case user has not become a part of campaign/variation.
-  static Future<int> getIntegerForKey(
+  static Future<int?> getIntegerForKey(
       String variableKey, int defaultValue) async {
     try {
-      if (variableKey == null) {
-        print("variableKey cannot be null.");
-        return null;
-      }
-
-      if (defaultValue == null) {
-        print("defaultValue cannot be null.");
-        return null;
-      }
 
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
@@ -151,6 +114,7 @@ class VWO {
           await _channel.invokeMethod('integerForKey', arguments);
       return integerValue;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -158,18 +122,9 @@ class VWO {
   /// Returns the String value for the [variableKey].
   ///
   /// [defaultValue] is the the value returned in case user has not become a part of campaign/variation.
-  static Future<String> getStringForKey(
+  static Future<String?> getStringForKey(
       String variableKey, String defaultValue) async {
     try {
-      if (variableKey == null) {
-        print("variableKey cannot be null.");
-        return null;
-      }
-
-      if (defaultValue == null) {
-        print("defaultValue cannot be null.");
-        return null;
-      }
 
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
@@ -180,6 +135,7 @@ class VWO {
           await _channel.invokeMethod('stringForKey', arguments);
       return stringValue;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -187,18 +143,9 @@ class VWO {
   /// Returns the Boolean value for the [variableKey].
   ///
   /// [defaultValue] is the the value returned in case user has not become a part of campaign/variation.
-  static Future<bool> getBooleanForKey(
+  static Future<bool?> getBooleanForKey(
       String variableKey, bool defaultValue) async {
     try {
-      if (variableKey == null) {
-        print("variableKey cannot be null.");
-        return null;
-      }
-
-      if (defaultValue == null) {
-        print("defaultValue cannot be null.");
-        return null;
-      }
 
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
@@ -209,6 +156,7 @@ class VWO {
           await _channel.invokeMethod('booleanForKey', arguments);
       return boolValue;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -216,18 +164,9 @@ class VWO {
   /// Returns the double value for the [variableKey].
   ///
   /// [defaultValue] is the the value returned in case user has not become a part of campaign/variation.
-  static Future<double> getDoubleForKey(
+  static Future<double?> getDoubleForKey(
       String variableKey, double defaultValue) async {
     try {
-      if (variableKey == null) {
-        print("variableKey cannot be null.");
-        return null;
-      }
-
-      if (defaultValue == null) {
-        print("defaultValue cannot be null.");
-        return null;
-      }
 
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
@@ -238,6 +177,7 @@ class VWO {
           await _channel.invokeMethod('doubleForKey', arguments);
       return doubleValue;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -248,10 +188,6 @@ class VWO {
   static Future<dynamic> getObjectForKey(
       String variableKey, dynamic defaultValue) async {
     try {
-      if (variableKey == null) {
-        print("variableKey cannot be null.");
-        return null;
-      }
 
       if (defaultValue == null) {
         print("defaultValue cannot be null.");
@@ -267,6 +203,7 @@ class VWO {
           await _channel.invokeMethod('objectForKey', arguments);
       return objectValue;
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -278,12 +215,8 @@ class VWO {
   /// [revenueValue] should be passed if the goalType is revenue.
   /// refer developer docs for more info.
   static Future<void> trackConversion(String goalIdentifier,
-      {double revenueValue}) async {
+      {double? revenueValue}) async {
     try {
-      if (goalIdentifier == null) {
-        print("goalIdentifier cannot be null.");
-        return null;
-      }
 
       Map<String, dynamic> arguments = <String, dynamic>{
         "goalIdentifier": goalIdentifier,
@@ -293,10 +226,9 @@ class VWO {
         arguments['revenueValue'] = revenueValue;
       }
 
-      final String variationName =
-          await _channel.invokeMethod('trackConversion', arguments);
-      return variationName;
+      await _channel.invokeMethod('trackConversion', arguments);
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -307,8 +239,8 @@ class VWO {
   static Future<void> pushCustomDimension(
       String customDimensionKey, String customDimensionValue) async {
     try {
-      if (customDimensionKey == null || customDimensionValue == null) {
-        print("customDimensionKey or customDimensionValue cannot be null.");
+      if (customDimensionKey.isEmpty || customDimensionValue.isEmpty) {
+        print("customDimensionKey or customDimensionValue cannot be empty.");
         return null;
       }
 
@@ -317,10 +249,9 @@ class VWO {
         "customDimensionValue": customDimensionValue
       };
 
-      final String variationName =
-          await _channel.invokeMethod('pushCustomDimension', arguments);
-      return variationName;
+      await _channel.invokeMethod('pushCustomDimension', arguments);
     } catch (e) {
+      print(e);
       return null;
     }
   }
