@@ -1,6 +1,6 @@
 name: vwo_flutter
 description: VWO Flutter plugin allows you to A/B Test your Mobile Applications.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/wingify/vwo-flutter-sdk
 
 environment:
