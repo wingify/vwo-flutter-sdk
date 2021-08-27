@@ -13,20 +13,27 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 class MobileData {
-    int id;
-    String name;
-    double price;
-    String units;
-    bool inStock;
-    bool codAvailable;
-    String imagePath;
-    String vendor;
-    String variantDetails;
-    double rating;
+  int id;
+  String name;
+  double price;
+  String units;
+  bool inStock;
+  bool codAvailable;
+  String imagePath;
+  String vendor;
+  String variantDetails;
+  double rating;
 
-    MobileData(this.id, this.name, this.price, this.units, this.inStock, this.codAvailable, this.imagePath, this.vendor, this.variantDetails, this.rating);
-
-
+  MobileData(
+      this.id,
+      this.name,
+      this.price,
+      this.units,
+      this.inStock,
+      this.codAvailable,
+      this.imagePath,
+      this.vendor,
+      this.variantDetails,
+      this.rating);
 }

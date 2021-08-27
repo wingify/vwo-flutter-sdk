@@ -28,7 +28,6 @@ class _APIKeyDialogState extends State<APIKeyDialog> {
   final FocusNode focusNode = FocusNode();
   bool _validate = false;
 
-
   @override
   void dispose() {
     apiKeyController.dispose();
@@ -38,7 +37,7 @@ class _APIKeyDialogState extends State<APIKeyDialog> {
   @override
   Widget build(BuildContext context) {
     final NavigationProvider provider =
-    Provider.of<NavigationProvider>(context);
+        Provider.of<NavigationProvider>(context);
     GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return Dialog(
       child: Container(
@@ -65,10 +64,8 @@ class _APIKeyDialogState extends State<APIKeyDialog> {
               autofocus: true,
               // scrollPadding: EdgeInsets.only(bottom: 50),
               textInputAction: TextInputAction.done,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(fontSize: 18),
+              style:
+                  Theme.of(context).textTheme.headline5!.copyWith(fontSize: 18),
               maxLength: 39,
               decoration: InputDecoration(
                 labelText: StringConstant.ENTER_API_KEY,
@@ -85,13 +82,14 @@ class _APIKeyDialogState extends State<APIKeyDialog> {
                 children: [
                   InkWell(
                     onTap: () async {
-                      if (apiKeyController.text.isEmpty || apiKeyController.text.length < 39) {
+                      if (apiKeyController.text.isEmpty ||
+                          apiKeyController.text.length < 39) {
                         setState(() {
                           _validate = true;
                         });
                       } else {
                         String? response =
-                        await provider.launchVWO(apiKeyController.text);
+                            await provider.launchVWO(apiKeyController.text);
                         if (response == null) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Error while launching VWO")));

@@ -13,7 +13,6 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:vwo_flutter_example/model/mobile_data.dart';
 import 'package:vwo_flutter_example/utils/constant.dart';
@@ -130,9 +129,11 @@ class SortingProvider extends ChangeNotifier {
 
   Future<bool> getSortedList() async {
     String? variationName =
-      await VWO.getVariationNameForTestKey(Constants.TEST_KEY_SORTING);
-    if (Constants.CUSTOM_DIMENSION_KEY.isNotEmpty && Constants.CUSTOM_DIMENSION_VALUE.isNotEmpty) {
-      VWO.pushCustomDimension(Constants.CUSTOM_DIMENSION_KEY, Constants.CUSTOM_DIMENSION_VALUE);
+        await VWO.getVariationNameForTestKey(Constants.TEST_KEY_SORTING);
+    if (Constants.CUSTOM_DIMENSION_KEY.isNotEmpty &&
+        Constants.CUSTOM_DIMENSION_VALUE.isNotEmpty) {
+      VWO.pushCustomDimension(
+          Constants.CUSTOM_DIMENSION_KEY, Constants.CUSTOM_DIMENSION_VALUE);
     }
     if (variationName != null) {
       switch (variationName) {
@@ -171,12 +172,12 @@ class SortingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String?> isAPIKeyExists() async{
+  Future<String?> isAPIKeyExists() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? apiKey = prefs.getString(Constants.API_KEY);
     if (apiKey != null && apiKey.isNotEmpty) {
       return apiKey;
-  }
+    }
     return null;
   }
 }

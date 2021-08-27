@@ -13,7 +13,6 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vwo_flutter_example/providers/housing_provider.dart';

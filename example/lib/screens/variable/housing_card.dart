@@ -13,7 +13,6 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:vwo_flutter_example/model/house_data.dart';
 import 'package:vwo_flutter_example/providers/housing_provider.dart';
@@ -46,7 +45,8 @@ class HousingCard extends StatelessWidget {
             children: [
               Text(
                 '$bhk BHK Flats, Apartments near you',
-                style: TextStyle(color: ColorConstant.HOUSE_CATEGORY_COLOR, fontSize: 14),
+                style: TextStyle(
+                    color: ColorConstant.HOUSE_CATEGORY_COLOR, fontSize: 14),
               ),
               SizedBox(
                 height: 15,
@@ -60,11 +60,14 @@ class HousingCard extends StatelessWidget {
                     return InkWell(
                       onTap: () async {
                         String headingText = await provider.getHeadingText();
-                        String contentText = await  provider.getContentText();
+                        String contentText = await provider.getContentText();
                         showDialog(
                             context: context,
-                            builder: (_)  {
-                              return HousingDialog(heading: headingText, content: contentText,);
+                            builder: (_) {
+                              return HousingDialog(
+                                heading: headingText,
+                                content: contentText,
+                              );
                             });
                       },
                       child: Card(
@@ -81,7 +84,8 @@ class HousingCard extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
-                                        ColorConstant.HOUSE_GRADIENT_START_COLOR,
+                                        ColorConstant
+                                            .HOUSE_GRADIENT_START_COLOR,
                                         ColorConstant.HOUSE_GRADIENT_MID_COLOR,
                                         ColorConstant.HOUSE_GRADIENT_END_COLOR
                                       ],

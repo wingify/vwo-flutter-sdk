@@ -86,7 +86,6 @@ class VWO {
   /// Returns the variation assigned to the user for the [testKey] passed.
   static Future<String?> getVariationNameForTestKey(String testKey) async {
     try {
-
       final String? variationName =
           await _channel.invokeMethod('variationNameForTestKey', {
         "testKey": testKey,
@@ -104,7 +103,6 @@ class VWO {
   static Future<int?> getIntegerForKey(
       String variableKey, int defaultValue) async {
     try {
-
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
         "defaultValue": defaultValue
@@ -125,7 +123,6 @@ class VWO {
   static Future<String?> getStringForKey(
       String variableKey, String defaultValue) async {
     try {
-
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
         "defaultValue": defaultValue
@@ -146,7 +143,6 @@ class VWO {
   static Future<bool?> getBooleanForKey(
       String variableKey, bool defaultValue) async {
     try {
-
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
         "defaultValue": defaultValue
@@ -167,7 +163,6 @@ class VWO {
   static Future<double?> getDoubleForKey(
       String variableKey, double defaultValue) async {
     try {
-
       Map<String, dynamic> arguments = <String, dynamic>{
         "variableKey": variableKey,
         "defaultValue": defaultValue
@@ -188,7 +183,6 @@ class VWO {
   static Future<dynamic> getObjectForKey(
       String variableKey, dynamic defaultValue) async {
     try {
-
       if (defaultValue == null) {
         print("defaultValue cannot be null.");
         return null;
@@ -217,7 +211,6 @@ class VWO {
   static Future<void> trackConversion(String goalIdentifier,
       {double? revenueValue}) async {
     try {
-
       Map<String, dynamic> arguments = <String, dynamic>{
         "goalIdentifier": goalIdentifier,
       };
