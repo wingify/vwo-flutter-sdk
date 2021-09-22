@@ -17,16 +17,23 @@
 
 package com.vwo.vwo_flutter;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry;
+
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.vwo.mobile.Initializer;
@@ -36,11 +43,14 @@ import com.vwo.mobile.events.VWOStatusListener;
 import com.vwo.mobile.utils.VWOLog;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 
 /** VwoFlutterPlugin */
 public class VwoFlutterPlugin implements FlutterPlugin, MethodCallHandler {
+  private static final String TAG = "vwo_flutter";
   private MethodChannel channel;
   Context context;
 
@@ -48,14 +58,16 @@ public class VwoFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 //    final MethodChannel channel = new MethodChannel(registrar.messenger(), "vwo_flutter_sdk");
 //    channel.setMethodCallHandler(new VwoFlutterPlugin(registrar.activity(), registrar.context(), channel));
 //  }
+  
+  
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
-    Log.d("TAG", "onMethodCall: " + call.method);
+    Log.d(TAG, "onMethodCall: " + call.method);
     switch (call.method) {
       case "launch":
         try {
-          Log.d("TAG", "inside launch: " + call.method);
-          Log.d("TAG", "value of vwoLog" + call.argument("vwoLog"));
+          Log.d(TAG, "inside launch: " + call.method);
+          Log.d(TAG, "value of vwoLog" + call.argument("vwoLog"));
           if ((String) call.argument("vwoLog") != null) {
             switch ((String) call.argument("vwoLog")) {
               case "off":
@@ -136,6 +148,10 @@ public class VwoFlutterPlugin implements FlutterPlugin, MethodCallHandler {
           result.error("1002", "error", e);
         }
         break;
+      case "setCustomVariable":
+        VWO.setCustomVariable(call.<String>argument("key"), call.<String>argument("value"));
+        result.success("success");
+        break;
       case "variationNameForTestKey":
         String variationName = VWO.getVariationNameForTestKey((String) call.argument("testKey"));
         result.success(variationName);
@@ -178,17 +194,62 @@ public class VwoFlutterPlugin implements FlutterPlugin, MethodCallHandler {
     }
   }
 
+  private  BroadcastReceiver receiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      Bundle extras = intent.getExtras();
+      String campaignId = extras.getString(VWO.Constants.ARG_CAMPAIGN_ID);
+      String campaignName = extras.getString(VWO.Constants.ARG_CAMPAIGN_NAME);
+      String variationId = extras.getString(VWO.Constants.ARG_VARIATION_ID);
+      String variationName = extras.getString(VWO.Constants.ARG_VARIATION_NAME);
+      // Write your Analytics code here
+      Map<String, String> map = new HashMap<String, String>();
+      Set<String> ks = extras.keySet();
+      Iterator<String> iterator = ks.iterator();
+      while (iterator.hasNext()) {
+        String key = iterator.next();
+        map.put(key, extras.getString(key));
+      }//w
+
+      Log.d(TAG, String.format("User became part of Campaign %s with id %s " +
+              "\nVariation %s with id %s", campaignName, campaignId, variationName, variationId));
+
+      channel.invokeMethod("vwo_integration", map, new MethodChannel.Result() {
+        @Override
+        public void success(@Nullable Object result) {
+          Log.d(TAG, result.toString());
+        }
+
+        @Override
+        public void error(String errorCode, @Nullable String errorMessage, @Nullable Object errorDetails) {
+          Log.d(TAG, errorMessage.toString());
+        }
+
+        @Override
+        public void notImplemented() {
+          Log.d(TAG, "vwo_integration_response method not implemented");
+        }
+      });
+    }
+  };
+
+  ContextWrapper contextWrapper = new ContextWrapper(this.context);
+
   @Override
   public void onAttachedToEngine(
           @NonNull FlutterPluginBinding binding) {
     this.channel = new MethodChannel(binding.getBinaryMessenger(), "vwo_flutter_sdk");
     this.context = binding.getApplicationContext();
     this.channel.setMethodCallHandler(this);
+    IntentFilter intentFilter = new IntentFilter(VWO.Constants.NOTIFY_USER_TRACKING_STARTED);
+    LocalBroadcastManager.getInstance(context).registerReceiver(receiver, intentFilter);
   }
 
   @Override
   public void onDetachedFromEngine(
           @NonNull FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
+    LocalBroadcastManager.getInstance(context).unregisterReceiver(receiver);
+    context = null;
   }
 }

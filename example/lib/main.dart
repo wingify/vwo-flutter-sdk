@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vwo_flutter/vwo_flutter.dart';
 import 'package:vwo_flutter_example/providers/navigation_provider.dart';
 import 'package:vwo_flutter_example/screens/sorting/sorting_campaign.dart';
 
@@ -31,6 +32,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    VWO.vwoStream.listen((vwoProperties) {
+      print("recieved data from vwo:- $vwoProperties");
+      String campaignId = vwoProperties["vwo_campaign_name"];
+      String campaignName =  vwoProperties["vwo_campaign_id"];
+      String variationId =  vwoProperties["vwo_variation_name"];
+      String variationName =  vwoProperties["vwo_variation_id"];
+      print("Campaign id $campaignId, Campaign name $campaignName, VariationId $variationId, VariationName $variationName" );
+    });
   }
 
   @override

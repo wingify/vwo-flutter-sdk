@@ -22,6 +22,9 @@ enum VWOLog { OFF, SEVERE, WARNING, CONFIG, INFO, ALL }
 class VWO {
   static const MethodChannel _channel = const MethodChannel('vwo_flutter_sdk');
   static String? _vwoLog;
+  static StreamController<Map<String, dynamic>> _vwoStreamController =
+      StreamController<Map<String, dynamic>>();
+  static Stream vwoStream = _vwoStreamController.stream;
 
   /// Set the log level for the VWO.
   ///
@@ -74,6 +77,7 @@ class VWO {
         launchData['vwoLog'] = _vwoLog;
       }
 
+      _channel.setMethodCallHandler(vwoFlutterMethodCallHandler);
       final String vwoLaunch =
           await _channel.invokeMethod('launch', launchData);
       return vwoLaunch;
@@ -246,6 +250,61 @@ class VWO {
     } catch (e) {
       print(e);
       return null;
+    }
+  }
+
+  /// Push the customVariable on VWO instance.
+  /// [key] is the key for customVariable
+  /// [value] is the value for customVariable
+  static Future<void> setCustomVariable(
+      String key, String value) async {
+    try {
+      if (key.isEmpty || value.isEmpty) {
+        print("key or value cannot be empty.");
+        return null;
+      }
+
+      Map<String, dynamic> arguments = <String, dynamic>{
+        "key": key,
+        "value": value
+      };
+
+      await _channel.invokeMethod('setCustomVariable', arguments);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  ///Close the current VWO Stream
+  static closeVWOStream() {
+    if (!_vwoStreamController.isClosed) {
+      _vwoStreamController.close();
+    }
+  }
+
+  ///open a new VWO Stream
+  static openVWOStream() {
+    _vwoStreamController = StreamController<Map<String, dynamic>>();
+    vwoStream = _vwoStreamController.stream;
+  }
+
+  ///Channel to listen events from android/iOS native
+  static Future<dynamic> vwoFlutterMethodCallHandler(
+      MethodCall methodCall) async {
+    switch (methodCall.method) {
+      case "vwo_integration":
+        print(methodCall.arguments);
+        if (_vwoStreamController.hasListener &&
+            !_vwoStreamController.isClosed &&
+            !_vwoStreamController.isPaused) {
+          _vwoStreamController.add(Map.from(methodCall.arguments));
+        } else {
+          print("vwoStream has no listeners attached");
+        }
+        return "success";
+      default:
+        return "failure";
     }
   }
 }
