@@ -13,22 +13,18 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
+enum Type { RESIDENTIAL, COMMERCIAL }
 
-enum Type {
-    RESIDENTIAL,
-    COMMERCIAL
-
-}
 class HouseData {
-    int id = 0;
-    String name;
-    int price;
-    int bhk;
-    String image;
-    Type? type = Type.RESIDENTIAL;
-    String? description = "Apartment for rent";
-    String? units = "\$";
+  int id = 0;
+  String name;
+  int price;
+  int bhk;
+  String image;
+  Type? type = Type.RESIDENTIAL;
+  String? description = "Apartment for rent";
+  String? units = "\$";
 
-    HouseData(this.id, this.name, this.price, this.bhk, this.image, {this.type, this.description, this.units});
-
+  HouseData(this.id, this.name, this.price, this.bhk, this.image,
+      {this.type, this.description, this.units});
 }

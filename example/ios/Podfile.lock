@@ -9,7 +9,7 @@ PODS:
     - VWO/All (= 2.7.1)
   - VWO/All (2.7.1):
     - Socket.IO-Client-Swift (~> 13.1)
-  - vwo_flutter (0.1.0):
+  - vwo_flutter (1.0.1):
     - Flutter
     - VWO (~> 2.7.1)
 
@@ -38,8 +38,8 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 2b2720f14c92ff1237ced09bc2f2da2022624fee
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   VWO: f7cfcc0df231c378eed8d8088d30babf456ccc9c
-  vwo_flutter: 3fc933e3dfa717586b7473ba2ebb1fe913a39b77
+  vwo_flutter: 4cff185c6a27aedb9f0cda88c387ccfbfcc1a924
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

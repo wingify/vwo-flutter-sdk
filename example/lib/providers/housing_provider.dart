@@ -13,7 +13,6 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:vwo_flutter/vwo_flutter.dart';
 import 'package:vwo_flutter_example/model/house_data.dart';
@@ -71,13 +70,15 @@ class HousingProvider extends ChangeNotifier {
 
   Future<String> getHeadingText() async {
     String? text =
-        await VWO.getStringForKey(Constants.KEY_DIALOG_HEADING, headingText) ?? 'Use our House Agent!';
+        await VWO.getStringForKey(Constants.KEY_DIALOG_HEADING, headingText) ??
+            'Use our House Agent!';
     return text;
   }
 
   Future<String> getContentText() async {
     String text =
-        await VWO.getStringForKey(Constants.KEY_DIALOG_CONTENT, contentText) ?? contentText;
+        await VWO.getStringForKey(Constants.KEY_DIALOG_CONTENT, contentText) ??
+            contentText;
     return text;
   }
 }

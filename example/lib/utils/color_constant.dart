@@ -13,20 +13,17 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/cupertino.dart';
 
 class ColorConstant {
-    static const Color APP_BAR_BACKGROUND_COLOR = Color(0xFF090C21);
-    static const Color STAR_RATING_COLOR = Color(0xFFEFCE4A);
-    static const Color BUY_NOW_COLOR = Color(0xFFAE7827);
-    static const Color ADD_TO_CART_COLOR = Color(0xFFAFB52C);
-    static const Color HOUSE_SUBTITLE_COLOR = Color(0xFF757575);
-    static const Color HOUSE_DIALOG_BUTTON_COLOR = Color(0xFFFF3F80);
-    static const Color HOUSE_CATEGORY_COLOR = Color(0xFFAAAAAA);
-    static const Color HOUSE_GRADIENT_START_COLOR = Color(0x80000000);
-    static const Color HOUSE_GRADIENT_MID_COLOR = Color(0x99000000);
-    static const Color HOUSE_GRADIENT_END_COLOR = Color(0x08000000);
-
-
+  static const Color APP_BAR_BACKGROUND_COLOR = Color(0xFF090C21);
+  static const Color STAR_RATING_COLOR = Color(0xFFEFCE4A);
+  static const Color BUY_NOW_COLOR = Color(0xFFAE7827);
+  static const Color ADD_TO_CART_COLOR = Color(0xFFAFB52C);
+  static const Color HOUSE_SUBTITLE_COLOR = Color(0xFF757575);
+  static const Color HOUSE_DIALOG_BUTTON_COLOR = Color(0xFFFF3F80);
+  static const Color HOUSE_CATEGORY_COLOR = Color(0xFFAAAAAA);
+  static const Color HOUSE_GRADIENT_START_COLOR = Color(0x80000000);
+  static const Color HOUSE_GRADIENT_MID_COLOR = Color(0x99000000);
+  static const Color HOUSE_GRADIENT_END_COLOR = Color(0x08000000);
 }

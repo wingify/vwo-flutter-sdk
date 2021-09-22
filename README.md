@@ -4,7 +4,8 @@ This open source library allows you to A/B Test your Flutter app.
 
 ## Requirements
 
-* Flutter sdk version ```>=2.7.0 <3.0.0```
+* Dart sdk version ```>=2.12.0 <3.0.0```
+* Flutter version ```>=1.20.0```
 
 ## Documentation
 

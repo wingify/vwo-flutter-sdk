@@ -13,22 +13,21 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 class StringConstant {
-    static const String SORTING_TITLE = 'Sorting Campaign';
-    static const String VARIABLE_TITLE = 'Variable Campaign';
-    static const String HOUSE_DIALOG_UPRAGE = 'Upgrade with \$6';
-    static const String HOUSE_DIALOG_CANCEL = 'Cancel';
-    static const String HOUSE_APARTMENT_INFO = 'Apartment for rent';
-    static const String IN_STOCK = 'In Stock';
-    static const String OUT_OF_STOCK = 'Out of Stock';
-    static const String COD_AVAILABLE = 'Cash on Delivery available';
-    static const String COD_UNAVAILABLE = 'Cash on Delivery not available';
-    static const String BUY_NOW = 'BUY NOW';
-    static const String ADD_TO_CART = 'ADD TO CART';
-    static const String LAUNCH_VWO = 'Launch VWO';
-    static const String ENTER_API_KEY = 'Enter API Key';
-    static const String INVALID_API_KEY = 'Enter a Valid API Key';
-    static const String CHOOSE_CAMPAIGN = 'Choose a Campaign';
-    static const String SETTINGS = 'Settings';
+  static const String SORTING_TITLE = 'Sorting Campaign';
+  static const String VARIABLE_TITLE = 'Variable Campaign';
+  static const String HOUSE_DIALOG_UPRAGE = 'Upgrade with \$6';
+  static const String HOUSE_DIALOG_CANCEL = 'Cancel';
+  static const String HOUSE_APARTMENT_INFO = 'Apartment for rent';
+  static const String IN_STOCK = 'In Stock';
+  static const String OUT_OF_STOCK = 'Out of Stock';
+  static const String COD_AVAILABLE = 'Cash on Delivery available';
+  static const String COD_UNAVAILABLE = 'Cash on Delivery not available';
+  static const String BUY_NOW = 'BUY NOW';
+  static const String ADD_TO_CART = 'ADD TO CART';
+  static const String LAUNCH_VWO = 'Launch VWO';
+  static const String ENTER_API_KEY = 'Enter API Key';
+  static const String INVALID_API_KEY = 'Enter a Valid API Key';
+  static const String CHOOSE_CAMPAIGN = 'Choose a Campaign';
+  static const String SETTINGS = 'Settings';
 }

@@ -13,7 +13,6 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vwo_flutter_example/providers/sorting_provider.dart';
@@ -57,8 +56,9 @@ class PhoneCard extends StatelessWidget {
                       // SizedBox(height: 15),
                       Text(
                         '${sortingProvider.mobileList[index].name}',
-                        style:
-                            TextStyle(fontSize: 14, color: ColorConstant.APP_BAR_BACKGROUND_COLOR),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: ColorConstant.APP_BAR_BACKGROUND_COLOR),
                       ),
                       Text(
                         'by ${sortingProvider.mobileList[index].vendor}',
